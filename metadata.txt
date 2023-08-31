@@ -1,0 +1,22 @@
+[general]
+name=Identify Features PLUS Tool
+email=r.bonnefoy@fredon-occitanie.fr
+author=Robin BONNEFOY
+qgisMinimumVersion=3.0
+description= Ouvre le(s) formulaire(s) de(s) entité(s) cliquées sur la carte.
+about=Fonctionnement similaire à l'outil Identifier natif de QGIS mais corrigeant sa lenteur à ouvrir les formulaires notamment pour les couches complexes (ex.: vues de Postgis).
+version=version 1.0
+tracker=http://bugs.itopen.it
+repository=http://www.itopen.it/repo
+
+changelog=
+    1.0 - First stable release
+
+tags=forms,database,identify
+
+; these metadata can be empty, they will eventually become mandatory.
+homepage=https://www.itopen.it
+icon=icon_identifyFeaturesPlus.png
+
+
+experimental=False
