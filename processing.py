@@ -3,9 +3,10 @@ from qgis.gui import QgsMapToolEmitPoint
 
 
 class ClickMapTool(QgsMapToolEmitPoint):
-  def __init__(self, canvas, iface):
+  def __init__(self, canvas, iface, status_bar):
     super().__init__(canvas)
     self.iface = iface
+    self.status_bar = status_bar
     
         
   def is_raster(self, layer):
@@ -30,9 +31,11 @@ class ClickMapTool(QgsMapToolEmitPoint):
       print(point_geom.boundingBox())
       features = [feature for feature in active_layer.getFeatures(request)]
 
-    if len(features) == 0 :
-      self.iface.messageBar().pushMessage("Identify Tool FREDON ", "Aucune entité trouvée dans la couche active.", level=Qgis.Info, duration=5)
-    else :
-      # Afficher les attributs des entités intersectant le point dans un formulaire
-      for feature in features:
-        self.iface.openFeatureForm(active_layer, feature)
+      if len(features) == 0 :
+        self.status_bar.showMessage("Aucune entité trouvée dans la couche active")
+      else :
+        # Afficher les attributs des entités intersectant le point dans un formulaire
+        message = '' + str(len(features)) + ' entité(s) identifiée(s)'
+        self.status_bar.showMessage(message)
+        for feature in features:
+          self.iface.openFeatureForm(active_layer, feature)
